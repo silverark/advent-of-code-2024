@@ -9,3 +9,5 @@ This repository contains my solutions for the [Advent of Code 2024](https://adve
 Each day has its own folder: `day1`, with a `part1` and `part2` inside.
 
 Run the test `TestProcess` to get the answer for that part of the challenge.
+
+As part of the AOC rules, I don't include the input data in the repo.
