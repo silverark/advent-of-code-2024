@@ -13,7 +13,7 @@ func process(input []string) int {
 		numbers := strings.Fields(line)
 		list1 = append(list1, shared.Atoi(numbers[0]))
 		list2Num := shared.Atoi(numbers[1])
-		if _, found := list2[shared.Atoi(numbers[1])]; !found {
+		if _, found := list2[list2Num]; !found {
 			list2[list2Num] = 0
 		}
 		list2[list2Num]++
