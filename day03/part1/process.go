@@ -70,9 +70,6 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		}
 
 		if char >= '0' && char <= '9' {
-			if firstNum == "" && '0' == char {
-				log.Println("Number starts with 0. Is this OK? At position: ", i)
-			}
 			firstNum += string(char)
 			continue
 		}
@@ -106,9 +103,6 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		}
 
 		if char >= '0' && char <= '9' {
-			if secondNum == "" && '0' == char {
-				log.Println("secondNum starts with 0. Is this OK? At position: ", i)
-			}
 			secondNum += string(char)
 			continue
 		}
