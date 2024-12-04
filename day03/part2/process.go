@@ -18,7 +18,6 @@ func process(input []string) int {
 }
 
 func processLine(line inputString) int {
-
 	lineTotal := 0
 	for i := 0; i < len(line); i++ {
 		if line.checkAhead(i, "do()") {
@@ -37,9 +36,7 @@ func processLine(line inputString) int {
 			i = newpos
 		}
 	}
-
 	return lineTotal
-
 }
 
 type inputString string
@@ -68,7 +65,7 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		newPos = i
 		char := input[i]
 
-		// End of string?dOESN'T MATTER IF IT'S A NUMBER OR A COMMA, THIS ISN'T VALID
+		// End of string?
 		if i+1 == len(input) {
 			return i, 0
 		}
@@ -82,24 +79,16 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		}
 
 		if char >= '0' && char <= '9' {
-			if firstNum == "" && '0' == char {
-				log.Println("Number starts with 0. Is this OK? At position: ", i)
-			}
 			firstNum += string(char)
 			continue
 		}
 
 		return i, 0
-
 	}
 
 	// Should have our first number now. Now get the second
-
-	// position is current at the comma
 	newPos++
-
 	secondNum := ""
-
 	for i := newPos; i < len(input); i++ {
 		newPos = i
 		char := input[i]
@@ -118,15 +107,11 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		}
 
 		if char >= '0' && char <= '9' {
-			if secondNum == "" && '0' == char {
-				log.Println("secondNum starts with 0. Is this OK? At position: ", i)
-			}
 			secondNum += string(char)
 			continue
 		}
 
 		return i, 0
-
 	}
 
 	// Multiply the numbers together.

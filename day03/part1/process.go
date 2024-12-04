@@ -25,12 +25,9 @@ func processLine(line inputString) int {
 				if line.getChar(i+2) == "l" {
 					if line.getChar(i+3) == "(" {
 						newpos, total := line.validateFunc(i + 4)
-
 						if total > 0 {
 							lineTotal += total
-							log.Printf("Total: %v\t String: %v ", total, line[i:newpos+1])
 						}
-
 						i = newpos
 					}
 				}
@@ -82,7 +79,6 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 
 	// position is current at the comma
 	newPos++
-
 	secondNum := ""
 
 	for i := newPos; i < len(input); i++ {
