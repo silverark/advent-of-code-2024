@@ -6,46 +6,20 @@ import (
 )
 
 func process(input []string) int {
-
 	total := 0
 	for _, line := range input {
-		total += processLine(inputString(line))
-	}
-
-	return total
-}
-
-func processLine(line inputString) int {
-
-	lineTotal := 0
-	for i := 0; i < len(line); i++ {
-
-		if line.getChar(i) == "m" {
-			if line.getChar(i+1) == "u" {
-				if line.getChar(i+2) == "l" {
-					if line.getChar(i+3) == "(" {
-						newpos, total := line.validateFunc(i + 4)
-						if total > 0 {
-							lineTotal += total
-						}
-						i = newpos
-					}
-				}
+		for i := 0; i < len(line)-4; i++ {
+			if line[i:i+4] == "mul(" {
+				newpos, lineTotal := validateFunc(line, i+4)
+				total += lineTotal
+				i = newpos
 			}
 		}
 	}
-
-	return lineTotal
-
+	return total
 }
 
-type inputString string
-
-func (input inputString) getChar(pos int) string {
-	return string(input[pos])
-}
-
-func (input inputString) validateFunc(pos int) (newPos int, total int) {
+func validateFunc(input string, pos int) (newPos int, total int) {
 	// get first number and check comma afterwards
 	firstNum := ""
 	newPos = pos
@@ -57,22 +31,18 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		if i+1 == len(input) {
 			return i, 0
 		}
-
-		if input.getChar(i) == "," {
+		if input[i] == ',' {
 			if firstNum == "" {
 				// not a valid first number
 				return i, 0
 			}
 			break
 		}
-
 		if char >= '0' && char <= '9' {
 			firstNum += string(char)
 			continue
 		}
-
 		return i, 0
-
 	}
 
 	// Should have our first number now. Now get the second
@@ -85,7 +55,7 @@ func (input inputString) validateFunc(pos int) (newPos int, total int) {
 		newPos = i
 		char := input[i]
 
-		if input.getChar(i) == ")" {
+		if input[i] == ')' {
 			if secondNum == "" {
 				// not a valid first number
 				return i, 0
