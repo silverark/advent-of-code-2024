@@ -51,6 +51,5 @@ func findWord(input []string, row, col int) int {
 	if row-3 >= 0 && col-3 >= 0 && input[row-1][col-1] == 'M' && input[row-2][col-2] == 'A' && input[row-3][col-3] == 'S' {
 		findCount++
 	}
-
 	return findCount
 }
