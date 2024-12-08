@@ -1,6 +1,9 @@
 package shared
 
-import "strconv"
+import (
+	"log"
+	"strconv"
+)
 
 func Reverse(s string) string {
 	runes := []rune(s)
@@ -18,6 +21,25 @@ func abs(x int) int {
 }
 
 func Atoi(s string) int {
-	intValue, _ := strconv.Atoi(s)
+	intValue, err := strconv.Atoi(s)
+	if err != nil {
+		log.Println("Error converting to integer", s, err)
+	}
 	return intValue
+}
+
+func IntPow(n, m int) int {
+	if m == 0 {
+		return 1
+	}
+
+	if m == 1 {
+		return n
+	}
+
+	result := n
+	for i := 2; i <= m; i++ {
+		result *= n
+	}
+	return result
 }
